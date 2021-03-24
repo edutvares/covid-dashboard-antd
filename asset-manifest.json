@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/covid-dashboard-antd/static/css/main.bea476a5.chunk.css",
+    "main.js": "/covid-dashboard-antd/static/js/main.d7d613ff.chunk.js",
+    "main.js.map": "/covid-dashboard-antd/static/js/main.d7d613ff.chunk.js.map",
+    "runtime-main.js": "/covid-dashboard-antd/static/js/runtime-main.65d70e72.js",
+    "runtime-main.js.map": "/covid-dashboard-antd/static/js/runtime-main.65d70e72.js.map",
+    "static/css/2.de2ac02e.chunk.css": "/covid-dashboard-antd/static/css/2.de2ac02e.chunk.css",
+    "static/js/2.3a6b1489.chunk.js": "/covid-dashboard-antd/static/js/2.3a6b1489.chunk.js",
+    "static/js/2.3a6b1489.chunk.js.map": "/covid-dashboard-antd/static/js/2.3a6b1489.chunk.js.map",
+    "static/js/3.d541d4b1.chunk.js": "/covid-dashboard-antd/static/js/3.d541d4b1.chunk.js",
+    "static/js/3.d541d4b1.chunk.js.map": "/covid-dashboard-antd/static/js/3.d541d4b1.chunk.js.map",
+    "index.html": "/covid-dashboard-antd/index.html",
+    "static/css/2.de2ac02e.chunk.css.map": "/covid-dashboard-antd/static/css/2.de2ac02e.chunk.css.map",
+    "static/css/main.bea476a5.chunk.css.map": "/covid-dashboard-antd/static/css/main.bea476a5.chunk.css.map",
+    "static/js/2.3a6b1489.chunk.js.LICENSE.txt": "/covid-dashboard-antd/static/js/2.3a6b1489.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65d70e72.js",
+    "static/css/2.de2ac02e.chunk.css",
+    "static/js/2.3a6b1489.chunk.js",
+    "static/css/main.bea476a5.chunk.css",
+    "static/js/main.d7d613ff.chunk.js"
+  ]
+}
