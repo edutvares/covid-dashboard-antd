@@ -11,17 +11,6 @@ import Dashboard from "./pages/Dashboard";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const routes = [
-  {
-    path: "/map",
-    Component: Map,
-  },
-  {
-    path: "/",
-    Component: Dashboard,
-  },
-];
-
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
 
