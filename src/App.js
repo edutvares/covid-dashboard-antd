@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
 
 import "./App.css";
 import { Layout, Menu, Space, Typography } from "antd";
@@ -14,16 +14,40 @@ const { Header, Content, Footer, Sider } = Layout;
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
 
+  const [data, setData] = useState({
+    dataSource: {},
+    global: {},
+    loading: true,
+  });
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      var requestOptions = {
+        method: "GET",
+        redirect: "follow",
+      };
+
+      fetch("https://api.covid19api.com/summary", requestOptions)
+        .then((response) => response.json())
+        .then(({ Global, Countries }) => {
+          setData({ global: Global, dataSource: Countries.sort((a,b) => b.TotalDeaths - a.TotalDeaths), loading: false });
+        })
+        .catch((error) => dataFetch());
+    };
+    dataFetch();
+    console.log(data.global);
+  }, []);
+
   return (
     <Router>
       <Layout style={{ minHeight: "100vh" }}>
         <Sider collapsible collapsed={collapsed} onCollapse={setCollapsed}>
           <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
+          <Menu theme="dark" defaultSelectedKeys={["/"]} mode="inline">
+            <Menu.Item key="/" icon={<PieChartOutlined />}>
               <Link to="/">Dashboard</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<GlobalOutlined />}>
+            <Menu.Item key="/map" icon={<GlobalOutlined />}>
               <Link to="/map">Map</Link>
             </Menu.Item>
           </Menu>
@@ -44,10 +68,10 @@ const App = () => {
             >
               <Switch>
                 <Route path="/map">
-                  <Map />
+                  <Map data={data}/>
                 </Route>
                 <Route path="/">
-                  <Dashboard />
+                  <Dashboard data={data}/>
                 </Route>
               </Switch>
             </div>

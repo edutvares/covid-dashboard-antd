@@ -1,5 +1,7 @@
 import { Card, Col, Row, Statistic, Table, Tag } from "antd";
 import { useEffect, useState } from "react";
+import {MehOutlined, SmileOutlined, FrownOutlined} from "@ant-design/icons"
+import { useLocation } from "react-router-dom"
 
 const columns = [
   {
@@ -8,7 +10,7 @@ const columns = [
     key: "Country",
   },
   {
-    title: "TotalConfirmed",
+    title: "Total Confirmed",
     dataIndex: "TotalConfirmed",
     key: "TotalConfirmed",
     render: (TotalConfirmed) => (
@@ -18,7 +20,7 @@ const columns = [
     ),
   },
   {
-    title: "TotalRecovered",
+    title: "Total Recovered",
     dataIndex: "TotalRecovered",
     key: "TotalRecovered",
     render: (TotalRecovered) => (
@@ -28,7 +30,7 @@ const columns = [
     ),
   },
   {
-    title: "TotalDeaths",
+    title: "Total Deaths",
     dataIndex: "TotalDeaths",
     key: "TotalDeaths",
     render: (TotalDeaths) => (
@@ -39,31 +41,7 @@ const columns = [
   },
 ];
 
-export default function Dashboard() {
-  const [data, setData] = useState({
-    dataSource: {},
-    global: {},
-    loading: true,
-  });
-
-  useEffect(() => {
-    const dataFetch = async () => {
-      var requestOptions = {
-        method: "GET",
-        redirect: "follow",
-      };
-
-      fetch("https://api.covid19api.com/summary", requestOptions)
-        .then((response) => response.json())
-        .then(({ Global, Countries }) => {
-          setData({ global: Global, dataSource: Countries, loading: false });
-        })
-        .catch((error) => console.log("error", error));
-    };
-    dataFetch();
-    console.log(data.global);
-  }, []);
-
+export default function Dashboard({data}) {
   return (
     <>
       <Row gutter={16} size="16">
@@ -72,7 +50,8 @@ export default function Dashboard() {
             <Statistic
               title="Cases"
               value={!data.loading ? data.global.TotalConfirmed : "--"}
-              valueStyle={{ color: "#3f8600" }}
+              valueStyle={{ color: "gold" }}
+              prefix={<MehOutlined />}
             />
           </Card>
         </Col>
@@ -82,6 +61,7 @@ export default function Dashboard() {
               title="Recovered"
               value={!data.loading ? data.global.TotalRecovered : "--"}
               valueStyle={{ color: "#3f8600" }}
+              prefix={<SmileOutlined />}
             />
           </Card>
         </Col>
@@ -91,6 +71,7 @@ export default function Dashboard() {
               title="Deaths"
               value={!data.loading ? data.global.TotalDeaths : "--"}
               valueStyle={{ color: "#cf1322" }}
+              prefix={<FrownOutlined />}
             />
           </Card>
         </Col>
